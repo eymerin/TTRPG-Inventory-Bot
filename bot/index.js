@@ -1,6 +1,6 @@
 // Require necessary modules
 const fs = require('fs'); // File system module for reading files
-const { Client, Collection, GatewayIntentBits } = require('discord.js'); // Discord.js modules for bot functionality
+const { Client, Collection, GatewayIntentBits, Events } = require('discord.js'); // Discord.js modules for bot functionality
 require('dotenv').config(); // Load environment variables from .env file
 const path = require('path'); // Module for working with file and directory paths
 
@@ -61,6 +61,17 @@ client.on('interactionCreate', async interaction => {
     // Respond with an error message if command execution fails
     await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
   }
+});
+
+//Modal Code Below
+
+client.on(Events.InteractionCreate, interaction => {
+	if (!interaction.isModalSubmit()) return;
+
+	// Get the data entered by the user
+	const itemName = interaction.fields.getTextInputValue('itemNameInput');
+	const itemDesc = interaction.fields.getTextInputValue('itemDescInput');
+	console.log({ itemName, itemDesc });
 });
 
 // Log in to Discord with the bot's token
