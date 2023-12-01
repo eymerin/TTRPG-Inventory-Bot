@@ -1,26 +1,26 @@
 [
     {
-        "inventory id" : 0,
-        "inventory name": "Shared Inventory"
+        "inventory_id" : 0,
+        "inventory_name": "Shared Inventory"
     },
     {
-        "inventory id" : 1,
-        "inventory name": "Yttani Inventory"
+        "inventory_id" : 1,
+        "inventory_name": "Yttani Inventory"
     },
     {
-        "inventory id" : 2,
-        "inventory name": "Eymerin Inventory"
+        "inventory_id" : 2,
+        "inventory_name": "Eymerin Inventory"
     },
     {
-        "inventory id" : 3,
-        "inventory name": "Player3 Inventory"
+        "inventory_id" : 3,
+        "inventory_name": "Player3 Inventory"
     },
     {
-        "inventory id" : 4,
-        "inventory name": "Player4 Inventory"
+        "inventory_id" : 4,
+        "inventory_name": "Player4 Inventory"
     },
     {
-        "inventory id" : 5,
-        "inventory name": "Player5 Inventory"
+        "inventory_id" : 5,
+        "inventory_name": "Player5 Inventory"
     }
 ]
