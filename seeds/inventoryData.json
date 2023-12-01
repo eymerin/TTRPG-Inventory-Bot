@@ -1,0 +1,26 @@
+[
+    {
+        "inventory id" : 0,
+        "inventory name": "Shared Inventory"
+    },
+    {
+        "inventory id" : 1,
+        "inventory name": "Yttani Inventory"
+    },
+    {
+        "inventory id" : 2,
+        "inventory name": "Eymerin Inventory"
+    },
+    {
+        "inventory id" : 3,
+        "inventory name": "Player3 Inventory"
+    },
+    {
+        "inventory id" : 4,
+        "inventory name": "Player4 Inventory"
+    },
+    {
+        "inventory id" : 5,
+        "inventory name": "Player5 Inventory"
+    }
+]
