@@ -65,13 +65,18 @@ client.on('interactionCreate', async interaction => {
 
 //Modal Code Below
 
-client.on(Events.InteractionCreate, interaction => {
+client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isModalSubmit()) return;
-
 	// Get the data entered by the user
 	const itemName = interaction.fields.getTextInputValue('itemNameInput');
 	const itemDesc = interaction.fields.getTextInputValue('itemDescInput');
 	console.log({ itemName, itemDesc });
+
+  //This is where we will want to place logic to use information from the modal for the database.
+
+  if (interaction.customId === 'createItem') {
+		await interaction.reply({ content: 'Your item submission was received successfully!' });
+	}
 });
 
 // Log in to Discord with the bot's token
