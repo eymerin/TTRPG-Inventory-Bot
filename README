@@ -1,3 +1,56 @@
 #TTRPG BOT
 
-PLACEHOLDER.
+# TTRPG BOT
+
+## Description
+A discord bot for TTRPG players that like to play TTRPG games online, this is an inventory management bot. The DM has admin access to add or remove from players inv, players have their own permissions to only view their own inventory. When you react, a modal opens with inventory icons and when clicked another modal opens with item information.
+
+## Table of Contents
+- [Installation](#installation)
+- [Checklist](#checklist)
+- [Credits](#credits)
+- [Screenshot](#screenshot)
+- [License](#license)
+
+## Installation
+What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running:
+
+
+
+## Checklist
+- Must use  Node.js
+- Must use Handlebars.js as the template engine.
+- Must use MySql and the Sequelize ORM for the datebase.
+- Must have both GET and POST routes for retrieving and adding new data
+- Must use at least one new library, package, or technology that we haven't Discussed
+- Must have a folder structure that meets the MVC paradigm
+- Must include authentication (express-session and cookies)
+- Must protect API Keys and sensitive information with enviorment variables
+- Must deployed using Heroku (with data)
+- Must have a polished UI
+- Must be responsive
+- Must be interactive (i.e accept and respond to user input)
+- Must meet good-quality coding standards (file structure, best practices, etc)
+- Must have professional README ( unique name, description, link to the deployed app)
+
+## Credits
+### Collaborators for this project were:
+Garrett Young
+Dana Fulmer
+Aidan Reed
+Aidan Lewis
+Brendalee Alcala
+
+### Tools Used:
+- 
+- 
+- 
+- 
+- 
+
+## Screenshot
+
+
+## Heroku deployed link: 
+
+## Github Repo link : [https://github.com/eymerin/TTRPG-Inventory-Bot]
