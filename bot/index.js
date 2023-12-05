@@ -37,9 +37,16 @@ for (const folder of commandFolders) {
   }
 };
 
+//Connecting the bot to the database
+const db = require('../config/connections');
 // Event handler for when the bot is ready
-client.once('ready', () => {
-  console.log(`Ready! Logged in as ${client.user.tag}`);
+client.once('ready', async() => {
+  //console.log(`Ready! Logged in as ${client.user.tag}`);
+  //db.authenticate()
+  //  .then(() => {
+  //    console.log('Logged into Database!');
+  //  })
+  //  .catch(err => console.log(err));
 });
 
 // Event handler for interaction (slash commands)
