@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: Inventory,
-                    attributes: ['filename', 'description'],
+                    attributes: ['item_name', 'description'],
                 },
             ],
         });
@@ -35,11 +35,13 @@ router.get('/inventory/:id', withAuth, async (req, res) => {
                 {
                     model: Item,
                     attributes: [
-                        'id',
-                        ''
-                    ]
-                }
-            ]
+                        'item_id',
+                        'item_name',
+                        'item_description',
+                        'inventory_id',
+                    ],
+                },
+            ],
         });
 
         const inventory = dbInventoryData.get({ plain: true });
