@@ -1,0 +1,85 @@
+body {
+    background: url('images/dungeon-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10%;
+}
+
+h1 {
+    display:block;
+    justify-content: center;
+}
+
+/*Add dropshadow*/
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 15px;
+    background: url('images/parchment.jpg');
+    justify-self: center;
+    align-self: center;
+}
+  
+.item {
+    aspect-ratio: 1;
+    min-width: 10%;
+    background: url('images/potion.png');
+    background-color: #393939;
+    color: whitesmoke;
+    border-radius: 10px;
+}
+
+.item:hover {
+    box-shadow: 0 8px 16px 0 rgba(92, 92, 92, 0.2);
+    background-color: #494949;
+}
+
+.item-container {
+    display:inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    transition: 0.3s;
+    border-radius: 2px;
+    justify-self: center;
+    align-self: center;
+    background: url('images/parchment.jpg');
+    background-size:auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    justify-content: left;
+    max-width:100%;
+}
+
+.potion {
+    background: url('images/potion.png');
+}
+  
+.inventory {
+    position: relative;
+    text-align: center;
+    color: white;
+    height: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 15px;
+    background: url('images/leather.jpg');
+    background-size: cover;
+    justify-self: center;
+    align-self: center;
+    background-size: contain;
+    display: block;
+}
+
+.title {
+    padding: 5px;
+    color: whitesmoke;
+    text-shadow: 2px 2px #393939;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
