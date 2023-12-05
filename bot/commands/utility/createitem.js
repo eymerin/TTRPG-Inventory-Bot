@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js'); // Import the SlashCommandBuilder from Discord.js
-const { ActionRowBuilder, Events, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
+const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
 
 module.exports = {
     // Define the command data using SlashCommandBuilder

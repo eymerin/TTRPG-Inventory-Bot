@@ -3,7 +3,7 @@ const { Player } = require('../../models');
 
 router.post('/', async (req, res) => {
   try {
-    const userData = await User.create(req.body);
+    const playerData = await Player.create(req.body);
 
     req.session.save(() => {
       req.session.player_id = playerData.id;
@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const playerData = await Player.findOne({ where: { username: req.body.user } });
+    const playerData = await Player.findOne({ where: { username: req.body.player } });
 
     if (!playerData) {
       res
