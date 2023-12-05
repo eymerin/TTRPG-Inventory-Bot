@@ -1,26 +1,18 @@
 [
     {
-        "inventory_id" : 0,
-        "inventory_name": "Shared Inventory"
-    },
-    {
-        "inventory_id" : 1,
         "inventory_name": "Yttani Inventory"
     },
     {
-        "inventory_id" : 2,
-        "inventory_name": "Eymerin Inventory"
+        "inventory_name": "Eymerin Inventory",
+        "player_id": 1
     },
     {
-        "inventory_id" : 3,
         "inventory_name": "Player3 Inventory"
     },
     {
-        "inventory_id" : 4,
         "inventory_name": "Player4 Inventory"
     },
     {
-        "inventory_id" : 5,
         "inventory_name": "Player5 Inventory"
     }
 ]
