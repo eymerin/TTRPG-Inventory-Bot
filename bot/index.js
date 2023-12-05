@@ -67,6 +67,7 @@ client.on('interactionCreate', async interaction => {
 
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isModalSubmit()) return;
+  if (interaction.customId === 'createItem') {
 	// Get the data entered by the user
 	const itemName = interaction.fields.getTextInputValue('itemNameInput');
 	const itemDesc = interaction.fields.getTextInputValue('itemDescInput');
@@ -74,8 +75,21 @@ client.on(Events.InteractionCreate, async interaction => {
 
   //This is where we will want to place logic to use information from the modal for the database.
 
-  if (interaction.customId === 'createItem') {
-		await interaction.reply({ content: 'Your item submission was received successfully!' });
+	await interaction.reply({ content: 'Your item submission was received successfully!' });
+	}
+});
+
+client.on(Events.InteractionCreate, async interaction => {
+	if (!interaction.isModalSubmit()) return;
+  if (interaction.customId === 'createPlayer') {
+	// Get the data entered by the user
+	const playerName = interaction.fields.getTextInputValue('playerNameInput');
+	const playerUser = interaction.fields.getTextInputValue('playerUser');
+  const playerPass = interaction.fields.getTextInputValue('playerPass');
+	console.log({ playerName, playerUser, playerPass });
+
+  //This is where we will want to place logic to use information from the modal for the database.
+	await interaction.reply({ content: `Your palyer details were collected successfully, and ${playerName} has been added!` });
 	}
 });
 
