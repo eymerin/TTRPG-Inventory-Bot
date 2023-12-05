@@ -95,3 +95,6 @@ client.on(Events.InteractionCreate, async interaction => {
 
 // Log in to Discord with the bot's token
 client.login(process.env.TOKEN);
+
+// command to open inventory, provide link to the site to login to see inventory.
+// look into logic to make commands role specific - have bot create role with player and add to a user in discord?
