@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require('discord.js'); // Import the SlashComman
 module.exports = {
   // Define the command data using SlashCommandBuilder
   data: new SlashCommandBuilder()
-    .setName('openInv') // Set the command name
+    .setName('openinv') // Set the command name
     .setDescription('Replies with a link to the login page to open players inventory!'), // Set the command description
 
   // Execute function that runs when the command is invoked
