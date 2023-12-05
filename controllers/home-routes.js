@@ -5,28 +5,28 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-        const dbInventoryData = await Inventory.findall({
-            include: [
-                {
-                    model: Inventory,
-                    attributes: ['item_name', 'description'],
-                },
-            ],
-        });
-
-        const inventories = dbInventoryData.map((inventory) => 
+      const dbInventoryData = await Inventory.findAll({
+        include: [
+          {
+            model: Inventory,
+            attributes: ['item_name', 'description'],
+          },
+        ],
+      });
+  
+      const inventories = dbInventoryData.map((inventory) =>
         inventory.get({ plain: true })
-        );
-
-        res.render('homepage', {
-            inventories,
-            loggedIn: req.session.loggedIn
-        });
+      );
+  
+      res.render('homepage', {
+        inventories,
+        loggedIn: req.session.loggedIn,
+      });
     } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+      console.log(err);
+      res.status(500).json(err);
     }
-});
+  });
 
 router.get('/inventory/:id', withAuth, async (req, res) => {
     try {
