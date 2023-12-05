@@ -39,9 +39,9 @@ router.get('/inventory/:id', withAuth, async (req, res) => {
                         'item_name',
                         'item_description',
                         'inventory_id',
-                    ]
-                }
-            ]
+                    ],
+                },
+            ],
         });
 
         const inventory = dbInventoryData.get({ plain: true });
