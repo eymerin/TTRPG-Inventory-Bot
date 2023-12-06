@@ -23,7 +23,7 @@ Item.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'inventory',
-        key: 'id',
+        key: 'inventory_id',
       },
     },
   },
