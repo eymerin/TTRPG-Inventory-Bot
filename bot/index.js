@@ -3,6 +3,7 @@ const fs = require('fs'); // File system module for reading files
 const { Client, Collection, GatewayIntentBits, Events } = require('discord.js'); // Discord.js modules for bot functionality
 require('dotenv').config(); // Load environment variables from .env file
 const path = require('path'); // Module for working with file and directory paths
+const { Item, Player, Inventory } = require('../models/index'); // Import the models in the DB.
 
 // Create a new Discord bot client
 const client = new Client({ intents: [GatewayIntentBits.Guilds] }); // Define bot intents for events
@@ -38,15 +39,15 @@ for (const folder of commandFolders) {
 };
 
 //Connecting the bot to the database
-//const db = require('../config/connections');
+const db = require('../config/connections');
 // Event handler for when the bot is ready
 client.once('ready', async() => {
   console.log(`Ready! Logged in as ${client.user.tag}`);
-  //db.authenticate()
-  //  .then(() => {
-  //    console.log('Logged into Database!');
-  //  })
-  //  .catch(err => console.log(err));
+  db.authenticate()
+    .then(() => {
+      console.log('Logged into Database!');
+    })
+    .catch(err => console.log(err));
 });
 
 // Event handler for interaction (slash commands)
@@ -73,17 +74,26 @@ client.on('interactionCreate', async interaction => {
 //Modal Code Below
 
 client.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isModalSubmit()) return;
+  if (!interaction.isModalSubmit()) return;
   if (interaction.customId === 'createItem') {
-	// Get the data entered by the user
-	const itemName = interaction.fields.getTextInputValue('itemNameInput');
-	const itemDesc = interaction.fields.getTextInputValue('itemDescInput');
-	console.log({ itemName, itemDesc });
+    const itemName = interaction.fields.getTextInputValue('itemNameInput');
+    const itemDesc = interaction.fields.getTextInputValue('itemDescInput');
+    console.log({ itemName, itemDesc });
 
-  //This is where we will want to place logic to use information from the modal for the database.
+    try {
+      // Insert item into the database using Sequelize
+      const newItem = await Item.create({
+        item_name: itemName,
+        item_description: itemDesc,
+      });
 
-	await interaction.reply({ content: 'Your item submission was received successfully!' });
-	}
+      console.log('Item added to database successfully:', newItem.toJSON());
+      await interaction.reply({ content: 'Your item submission was received successfully!' });
+    } catch (error) {
+      console.error('Error adding item to database:', error);
+      await interaction.reply({ content: 'Failed to add the item to the database.' });
+    }
+  }
 });
 
 client.on(Events.InteractionCreate, async interaction => {
