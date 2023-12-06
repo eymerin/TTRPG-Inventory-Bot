@@ -14,8 +14,6 @@ const seedDatabase = async () => {
 
     await seedItem();
 
-    await
-
     console.log('Database seeded successfully!');
     process.exit(0);
   } catch (error) {
