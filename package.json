@@ -4,6 +4,7 @@
   "description": "PLACEHOLDER",
   "main": "server.js",
   "scripts": {
+    "seed": "node seeds/seed.js",
     "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -12,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "discord": "^0.8.2",
     "discord.js": "^14.14.1",
     "djs-commander": "^0.0.45",

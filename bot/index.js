@@ -37,9 +37,16 @@ for (const folder of commandFolders) {
   }
 };
 
+//Connecting the bot to the database
+//const db = require('../config/connections');
 // Event handler for when the bot is ready
-client.once('ready', () => {
+client.once('ready', async() => {
   console.log(`Ready! Logged in as ${client.user.tag}`);
+  //db.authenticate()
+  //  .then(() => {
+  //    console.log('Logged into Database!');
+  //  })
+  //  .catch(err => console.log(err));
 });
 
 // Event handler for interaction (slash commands)
@@ -95,3 +102,6 @@ client.on(Events.InteractionCreate, async interaction => {
 
 // Log in to Discord with the bot's token
 client.login(process.env.TOKEN);
+
+// command to open inventory, provide link to the site to login to see inventory.
+// look into logic to make commands role specific - have bot create role with player and add to a user in discord?

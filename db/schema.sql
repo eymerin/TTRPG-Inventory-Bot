@@ -1,7 +1,11 @@
 DROP DATABASE IF EXISTS ttrpg_db;
 CREATE DATABASE ttrpg_db;
-
 USE ttrpg_db;
+
+DROP TABLE IF EXISTS tag;
+DROP TABLE IF EXISTS item;
+DROP TABLE IF EXISTS inventory;
+DROP TABLE IF EXISTS players;
 
 CREATE TABLE players (
   id INT NOT NULL,
@@ -10,22 +14,24 @@ CREATE TABLE players (
 );
 
 CREATE TABLE inventory (
-  id INT,
+  id INT NOT NULL,
   inventory_name VARCHAR(30) NOT NULL,
-  player_id INT,
-  FOREIGN KEY (player_id)
-  REFERENCES players(id)
-  ON DELETE SET NULL
+  players_id INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (players_id)
+    REFERENCES players(id)
+    ON DELETE SET NULL
 );
 
 CREATE TABLE item (
-  id INT,
-  item_name VARCHAR(30) NOT NULL,
-  inventory_id INT,
+  id INT NOT NULL,
+  item_name VARCHAR(30),
   item_description TEXT,
+  inventory_id INT,
+  PRIMARY KEY (id),
   FOREIGN KEY (inventory_id)
-  REFERENCES inventory(id)
-  ON DELETE SET NULL
+    REFERENCES inventory(id)
+    ON DELETE SET NULL
 );
 
 CREATE TABLE tag (
@@ -34,6 +40,6 @@ CREATE TABLE tag (
   item_id INT,
   tag_attributes TEXT,
   FOREIGN KEY (item_id)
-  REFERENCES item(id)
-  ON DELETE SET NULL
+    REFERENCES item(id)
+    ON DELETE SET NULL
 );
