@@ -19,7 +19,7 @@ Inventory.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'player',
-        key: 'id',
+        key: 'player_id',
       },
     },
   },
