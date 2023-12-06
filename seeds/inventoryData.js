@@ -1,4 +1,6 @@
-[
+const { Inventory } = require('../models');
+
+const inventorydata = [
     {
         "inventory_name": "Yttani Inventory"
     },
@@ -15,4 +17,9 @@
     {
         "inventory_name": "Player5 Inventory"
     }
-]
+];
+
+const seedInventory = () => Inventory.bulkCreate(inventorydata);
+
+module.exports = seedInventory;
+
