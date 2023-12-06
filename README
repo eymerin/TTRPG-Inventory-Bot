@@ -13,7 +13,8 @@ A discord bot for TTRPG players that like to play TTRPG games online, this is an
 - [License](#license)
 
 ## Installation
-What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running:
+
+Installation needed
 
 
 
@@ -42,11 +43,12 @@ Aidan Lewis
 Brendalee Alcala
 
 ### Tools Used:
-- 
-- 
-- 
-- 
-- 
+- Excalidraw
+- Handlebars
+- Node.js
+- MySQL and Sequelize ORM
+- API Keys
+- GET & POST
 
 ## Screenshot
 
