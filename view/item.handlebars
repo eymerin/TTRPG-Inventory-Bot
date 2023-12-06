@@ -1,1 +1,7 @@
-<button class="item">{{{item}}}</button>
+<button class="btn" data-bs-toggle="modal" data-bs-target="#reg-modal">{{item_name}}</button>
+
+<div class="modal fade" id="reg-modal" aria-hidden="true">
+    <h2 class="title">{{item_name}}</h2>
+    <p class="item-details">{{item_description}}</p>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+</div>

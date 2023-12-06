@@ -1,6 +1,7 @@
 [
     {
-        "inventory_name": "Yttani Inventory"
+        "inventory_name": "Yttani Inventory",
+        "player_id": 2
     },
     {
         "inventory_name": "Eymerin Inventory",

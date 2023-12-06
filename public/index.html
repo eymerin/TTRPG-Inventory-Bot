@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Inventory</title>
-    <link rel="stylesheet" href="jass.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -15,10 +18,10 @@
             <h1 class="title">Player Inventory</h1>
         </header>
         <main class="item-container">
-            <button class="item">Sword</button>
-            <button class="item">Potion</button>
-            <button class="item">Amulet</button>
-            <button class="item">Sword</button>
+            <button class="item" data-bs-toggle="modal" data-bs-target="#modal">Sword</button>
+            <button class="item" data-bs-toggle="modal" data-bs-target="#modal">Potion</button>
+            <button class="item" data-bs-toggle="modal" data-bs-target="#modal">Amulet</button>
+            <button class="item" data-bs-toggle="modal" data-bs-target="#modal">Sword</button>
             <button class="item">Potion</button>
             <button class="item">Amulet</button>
             <button class="item">Sword</button>
@@ -28,7 +31,16 @@
             <button class="item">Potion</button>
             <button class="item">Amulet</button>
         </main>
+        
     </div>
+
+    <div class="modal fade" id="reg-modal" aria-hidden="true">
+        <h2 class="title">item_name</h2>
+        <p class="item-details">item_description</p>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+    </div>
+
+    
 
 </body>
 
