@@ -21,7 +21,7 @@ module.exports = {
 			.setStyle(TextInputStyle.Short);
             
 		const playerUserInput = new TextInputBuilder()
-			.setCustomId('playerUser')
+			.setCustomId('playerUsername')
 			.setLabel("Set a login username for this player.")
             .setRequired(true)
 			.setStyle(TextInputStyle.Short);
