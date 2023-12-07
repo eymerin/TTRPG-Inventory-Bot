@@ -2,11 +2,12 @@ const router = require('express').Router();
 const { Player, Inventory, Item } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     const loggedIn = req.session.loggedIn || false;
 
-    const inventoryData = await Player.findAll({
+    // Retrieve the player using the player_id from the session
+    const playerData = await Player.findByPk(req.session.player_id, {
       include: [
         {
           model: Inventory,
@@ -15,17 +16,24 @@ router.get('/', async (req, res) => {
       ],
     });
 
-    const inventories = inventoryData.map((inventory) =>
-      inventory.get({ plain: true })
-    );
+    // Check if playerData is null
+    if (!playerData) {
+      res.status(404).send('Player not found');
+      return;
+    }
 
-    res.render('main', {
+    // Retrieve inventories
+    const inventories = playerData.Inventories.map((inventory) => inventory.get({ plain: true }));
+
+    // Render the inventory view
+    res.render('inventory', {
       inventories,
       loggedIn,
+      playerSess: req.session.player_id,
     });
-    console.log(inventoryData);
+
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json(err);
   }
 });

@@ -6,9 +6,9 @@ router.post('/', async (req, res) => {
     const playerData = await Player.create(req.body);
 
     req.session.save(() => {
-      req.session.player_id = playerData.id;
+      req.session.player_id = playerData.player_id;
       req.session.logged_in = true;
-
+      console.log('user-routes', player_id);
       res.status(200).json(playerData);
     });
   } catch (err) {
@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.player_id = playerData.id;
+      req.session.player_id = playerData.player_id;
       req.session.logged_in = true;
       
       res.json({ player: playerData, message: 'You are now logged in!' });

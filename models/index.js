@@ -13,7 +13,7 @@ Inventory.belongsTo(Player, {
 
 
 Inventory.hasMany(Item, {
-    foreignKey: 'inventory_id',
+  foreignKey: 'inventory_id',
   onDelete: 'CASCADE',
 });
 

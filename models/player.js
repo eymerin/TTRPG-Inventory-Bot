@@ -20,7 +20,7 @@ Player.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
