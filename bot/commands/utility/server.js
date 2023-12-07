@@ -1,10 +1,10 @@
-const { SlashCommandBuilder } = require('discord.js'); // Import the SlashCommandBuilder from Discord.js
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
   // Define the command data using SlashCommandBuilder
   data: new SlashCommandBuilder()
-    .setName('server') // Set the command name
-    .setDescription('Provides information about the server.'), // Set the command description
+    .setName('server')
+    .setDescription('Provides information about the server.'),
 
   // Execute function that runs when the command is invoked
   async execute(interaction) {

@@ -1,9 +1,8 @@
 const { REST, Routes } = require('discord.js'); // Import necessary Discord.js modules
-require('dotenv').config(); // Load environment variables from .env file
-const fs = require('fs'); // File system module for reading files
-const path = require('path'); // Module for working with file and directory paths
-
-const commands = []; // Array to store commands
+require('dotenv').config(); 
+const fs = require('fs'); 
+const path = require('path'); 
+const commands = []; 
 
 // Define the path to the commands folder
 const foldersPath = path.join(__dirname, 'commands');

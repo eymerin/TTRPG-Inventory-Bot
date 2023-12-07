@@ -4,8 +4,8 @@ const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = req
 module.exports = {
     // Define the command data using SlashCommandBuilder
     data: new SlashCommandBuilder()
-      .setName('createitem') // command name to createitem
-      .setDescription('Creates an item'), // command description
+      .setName('createitem')
+      .setDescription('Creates an item'),
   
     // Execute function that runs when the command is invoked
     async execute(interaction) {
@@ -16,9 +16,7 @@ module.exports = {
 		// Create the text input components
 		const itemNameInput = new TextInputBuilder()
 			.setCustomId('itemNameInput')
-		    // The label is the prompt the user sees for this input
 			.setLabel("What's the name of the Item?")
-		    // Short means only a single line of text
             .setRequired(true)
 			.setStyle(TextInputStyle.Short);
             
@@ -27,7 +25,6 @@ module.exports = {
 			.setCustomId('itemDescInput')
 			.setLabel("What is the description of the item?")
             .setRequired(true)
-		    // Paragraph means multiple lines of text.
 			.setStyle(TextInputStyle.Paragraph);
 
 		// An action row only holds one text input,
@@ -39,7 +36,6 @@ module.exports = {
 		modal.addComponents(firstActionRow, secondActionRow);
 
 		// Show the modal to the user
-        // await interaction.reply('Creating an item...');
 		await interaction.showModal(modal);
 	},
 };

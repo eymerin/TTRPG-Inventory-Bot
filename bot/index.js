@@ -1,27 +1,24 @@
 // Require necessary modules
-const fs = require('fs'); // File system module for reading files
+const fs = require('fs');
 const { Client, Collection, GatewayIntentBits, Events } = require('discord.js'); // Discord.js modules for bot functionality
-require('dotenv').config(); // Load environment variables from .env file
-const path = require('path'); // Module for working with file and directory paths
+require('dotenv').config();
+const path = require('path');
+const db = require('../config/connections'); //Connecting the bot to the database
 const { Item, Player, Inventory } = require('../models/index'); // Import the models in the DB.
 
-// Create a new Discord bot client
-const client = new Client({ intents: [GatewayIntentBits.Guilds] }); // Define bot intents for events
+
+// Create a new Discord bot client and define intents
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 // Collection to store bot commands
 client.commands = new Collection();
 
-// Define the path to the commands folder
 const foldersPath = path.join(__dirname, 'commands');
-
-// Read all folders within the commands directory
 const commandFolders = fs.readdirSync(foldersPath);
 
 // Loop through each folder to load commands
 for (const folder of commandFolders) {
   const commandsPath = path.join(foldersPath, folder);
-  
-  // Filter and retrieve JavaScript files from the folder
   const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
   // Load each command file
@@ -38,8 +35,6 @@ for (const folder of commandFolders) {
   }
 };
 
-//Connecting the bot to the database
-const db = require('../config/connections');
 // Event handler for when the bot is ready
 client.once('ready', async() => {
   console.log(`Ready! Logged in as ${client.user.tag}`);
@@ -63,16 +58,14 @@ client.on('interactionCreate', async interaction => {
   }
 
   try {
-    await command.execute(interaction); // Execute the command
+    await command.execute(interaction);
   } catch (error) {
     console.error(error);
-    // Respond with an error message if command execution fails
     await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
   }
 });
 
-//Modal Code Below
-
+//Event Listener for createitem command
 client.on(Events.InteractionCreate, async interaction => {
   if (!interaction.isModalSubmit()) return;
   if (interaction.customId === 'createItem') {
@@ -96,22 +89,34 @@ client.on(Events.InteractionCreate, async interaction => {
   }
 });
 
+
+
+
+//Event Listener for createplayer command
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isModalSubmit()) return;
   if (interaction.customId === 'createPlayer') {
-	// Get the data entered by the user
 	const playerName = interaction.fields.getTextInputValue('playerNameInput');
 	const playerUser = interaction.fields.getTextInputValue('playerUser');
   const playerPass = interaction.fields.getTextInputValue('playerPass');
 	console.log({ playerName, playerUser, playerPass });
 
-  //This is where we will want to place logic to use information from the modal for the database.
-	await interaction.reply({ content: `Your palyer details were collected successfully, and ${playerName} has been added!` });
-	}
+  try {
+    // Insert player into the database using Sequelize
+    const newPlayer = await Player.create({
+      name: playerName,
+      user: playerUser,
+      password: playerPass,
+    });
+
+    console.log('Player added to database successfully:', newPlayer.toJSON());
+    await interaction.reply({ content: `Your player details were collected successfully, and ${playerName} has been added! Additionally, an inventory has been created for them!` });
+  } catch (error) {
+    console.error('Error adding player to database:', error);
+    await interaction.reply({ content: 'Failed to add the player to the database.' });
+  }
+}
 });
 
 // Log in to Discord with the bot's token
 client.login(process.env.TOKEN);
-
-// command to open inventory, provide link to the site to login to see inventory.
-// look into logic to make commands role specific - have bot create role with player and add to a user in discord?
