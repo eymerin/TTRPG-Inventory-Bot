@@ -1,32 +1,42 @@
 const router = require('express').Router();
-const { Inventory, Item } = require('../models');
-
+const { Player, Inventory, Item } = require('../models');
 const withAuth = require('../utils/auth');
 
-router.get('/', async (req, res) => {
-    try {
-      const inventoryData = await Inventory.findAll({
-        include: [
-          {
-            model: Inventory,
-            attributes: ['item_name', 'description'],
-          },
-        ],
-      });
-  
-      const inventories = inventoryData.map((inventory) =>
-        inventory.get({ plain: true })
-      );
-  
-      res.render('main', {
-        inventories,
-        loggedIn: req.session.loggedIn,
-      });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
+router.get('/', withAuth, async (req, res) => {
+  try {
+    const loggedIn = req.session.loggedIn || false;
+
+    // Retrieve the player using the player_id from the session
+    const playerData = await Player.findByPk(req.session.player_id, {
+      include: [
+        {
+          model: Inventory,
+          attributes: ['inventory_name'],
+        },
+      ],
+    });
+
+    // Check if playerData is null
+    if (!playerData) {
+      res.status(404).send('Player not found');
+      return;
     }
-  });
+
+    // Retrieve inventories
+    const inventories = playerData.Inventories.map((inventory) => inventory.get({ plain: true }));
+
+    // Render the inventory view
+    res.render('inventory', {
+      inventories,
+      loggedIn,
+      playerSess: req.session.player_id,
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
 
 router.get('/inventory/:id', withAuth, async (req, res) => {
     try {
@@ -55,9 +65,7 @@ router.get('/inventory/:id', withAuth, async (req, res) => {
 router.get('/item/:id', withAuth, async (req, res) => {
     try {
         const itemData = await Item.findByPk(req.params.id);
-
         const item = itemData.get({ plain: true });
-
         res.render('item', { item, loggedIn: req.session.loggedIn });
     } catch (err) {
         console.log(err);
