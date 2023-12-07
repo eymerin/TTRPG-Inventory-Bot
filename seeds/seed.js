@@ -1,21 +1,25 @@
-const sequelize = require('../config/connection');
-const { Player, Inventory, Item } = require('../models');
+const sequelize = require('../config/connections');
+const seedPlayer = require('../seeds/playerData');
+const seedInventory = require('../seeds/inventoryData');
+const seedItem = require('../seeds/itemData');
 
-const playerData = require('./playerData.json');
-const inventoryData = require('./inventoryData.json');
-const itemData = require('./itemData.json');
 
 const seedDatabase = async () => {
-  await sequelize.sync({ force: true });
+  try {
+    await sequelize.sync({ force: true });
 
-  const player = await Player.bulkCreate(playerData);
+    await seedPlayer();
 
-  const inventory = await Inventory.bulkCreate(inventoryData);
+    await seedInventory();
 
-  const item = await Item.bulkCreate(itemData);
+    await seedItem();
 
-
-  process.exit(0);
+    console.log('Database seeded successfully!');
+    process.exit(0);
+  } catch (error) {
+    console.error('Error seeding the database:', error);
+    process.exit(1);
+  }
 };
 
 seedDatabase();

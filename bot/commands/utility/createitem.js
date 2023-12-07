@@ -31,7 +31,7 @@ module.exports = {
 			.setStyle(TextInputStyle.Paragraph);
 
 		// An action row only holds one text input,
-		// so you need one action row per text input.
+		// so you need one action row per input.
 		const firstActionRow = new ActionRowBuilder().addComponents(itemNameInput);
 		const secondActionRow = new ActionRowBuilder().addComponents(itemDescInput);
 
