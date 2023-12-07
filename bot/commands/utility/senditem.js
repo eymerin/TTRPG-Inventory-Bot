@@ -1,4 +1,4 @@
-const { StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, SlashCommandBuilder } = require('discord.js');
+const { StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, SlashCommandBuilder, ComponentType } = require('discord.js');
 const { Item, Player } = require('../../../models/index');
 
 module.exports = {
@@ -8,7 +8,10 @@ module.exports = {
       .setDescription('Select an Item to send'),
 
     async execute(interaction) {
-        try {
+            // Initialize session data for the interaction
+            interaction.sessionData = {
+            selectedItem: null
+            };
             
             const items = await Item.findAll();
             const players = await Player.findAll();
@@ -16,7 +19,9 @@ module.exports = {
             // Create a StringSelectMenuBuilder for items
             const itemSelectMenu = new StringSelectMenuBuilder()
                 .setCustomId('itemSelection')
-                .setPlaceholder('Select an item to send');
+                .setPlaceholder('Select an item to send')
+                .setMaxValues(1);
+                
       
             // Generate select menu options for items based on item data
             items.forEach((item) => {
@@ -46,14 +51,21 @@ module.exports = {
             const playerActionRow = new ActionRowBuilder().addComponents(playerSelectMenu);
       
             // Send the item select menu in an interaction reply
-            await interaction.reply(
+            const reply = await interaction.reply(
                 {
                 content: 'Please select an item to send, and the player to send it to:',
                 components: [itemActionRow, playerActionRow],
                 }
             );
-        } catch (error) {
-            console.error('Error executing command:', error);
-        }
+
+            const collector = reply.createMessageComponentCollector({
+                ComponentType: ComponentType.StringSelect,
+                filter: (i) => i.user.id === interaction.user.id && i.customId === interaction.id,
+                time: 60_000,
+            });
+
+            collector.on('collect', (interaction) => {
+                console.log(interaction.values);
+            })
     }
 };

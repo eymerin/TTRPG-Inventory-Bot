@@ -1,6 +1,6 @@
 // Require necessary modules
 const fs = require('fs');
-const { Client, Collection, GatewayIntentBits, Events, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js'); // Discord.js modules for bot functionality
+const { Client, Collection, GatewayIntentBits, Events } = require('discord.js'); // Discord.js modules for bot functionality
 require('dotenv').config();
 const path = require('path');
 const db = require('../config/connections'); //Connecting the bot to the database
@@ -89,75 +89,8 @@ client.on(Events.InteractionCreate, async interaction => {
   }
 });
 
-// Define an object to store selected items by interaction ID
-const selectedItemsMap = {};
 
-// Event Listener for senditem command
-client.on(Events.InteractionCreate, async (interaction) => {
-  if (!interaction.isSelectMenu()) return;
 
-  // Handle item selection
-  if (interaction.customId === 'itemSelection') {
-    const itemId = interaction.values[0];
-    const selectedItem = await Item.findByPk(itemId);
-
-    // Store the selected item in the object using interaction ID as a key
-    selectedItemsMap[interaction.id] = selectedItem;
-
-    console.log(`Selected item: ${selectedItem.item_name}`); // Log selected item
-
-    await interaction.reply({
-      content: `You've selected: ${selectedItem.item_name}`,
-      ephemeral: true,
-    });
-  }
-
-  // Handle player selection
-  if (interaction.customId === 'playerSelection') {
-    const selectedItem = selectedItemsMap[interaction.id]; // Retrieve the selected item using interaction ID
-
-    if (selectedItem) {
-      try {
-        const playerId = interaction.values[0]; // Retrieve the selected player ID
-        const selectedPlayer = await Player.findOne({ where: { name: playerId } });
-
-        console.log(`Selected player: ${selectedPlayer.name}`); // Log selected player
-
-        const playerInventory = await Inventory.findOne({
-          where: { player_id: selectedPlayer.player_id },
-        });
-
-        if (playerInventory) {
-          await selectedItem.setInventory(playerInventory);
-
-          await interaction.reply({
-            content: `Item ${selectedItem.item_name} has been added to ${selectedPlayer.name}'s inventory.`,
-            ephemeral: true,
-          });
-        } else {
-          await interaction.reply({
-            content: 'Player inventory not found.',
-            ephemeral: true,
-          });
-        }
-      } catch (error) {
-        console.error('Error adding item to inventory:', error);
-        await interaction.reply({
-          content: 'Failed to add the item to the inventory.',
-          ephemeral: true,
-        });
-      } finally {
-        // Clear the selected item for this interaction
-        delete selectedItemsMap[interaction.id];
-      }
-    } else {
-      await interaction.reply({
-        content: 'Please select an item first.',
-        ephemeral: true,
-      });
-    }
-  }
-});
 
 //Event Listener for createplayer command
 client.on(Events.InteractionCreate, async interaction => {
