@@ -1,6 +1,6 @@
 // Require necessary modules
 const fs = require('fs'); // File system module for reading files
-const { Client, Collection, GatewayIntentBits, Events } = require('discord.js'); // Discord.js modules for bot functionality
+const { Client, Collection, GatewayIntentBits, Events, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js'); // Discord.js modules for bot functionality
 require('dotenv').config(); // Load environment variables from .env file
 const path = require('path'); // Module for working with file and directory paths
 const { Item, Player, Inventory } = require('../models/index'); // Import the models in the DB.
