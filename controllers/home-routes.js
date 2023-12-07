@@ -4,7 +4,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    console.log(req.session.player_id);
+
     const loggedIn = req.session.loggedIn || false;
 
     const inventoryData = await Player.findByPk(req.session.player_id, {
@@ -15,7 +15,9 @@ router.get('/', async (req, res) => {
         },
       ],
     });
-
+    
+    console.log('home-routes-inside', inventoryData);
+    
     if (!inventoryData) {
       // Handle the case where the player with the specified ID is not found
       res.status(404).send('Player not found');
