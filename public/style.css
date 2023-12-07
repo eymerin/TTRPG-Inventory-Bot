@@ -1,8 +1,10 @@
 body {
     background: url('images/dungeon-bg.jpg');
+    background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
     margin: 10%;
+    height: 100vh;
 }
 
 h1 {
@@ -19,23 +21,39 @@ h1 {
     justify-self: center;
     align-self: center;
 }
-  
+
+.inventory {
+    position: center center;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 15px;
+    background: url('images/leather.jpg');
+    background-size: cover;
+    justify-self: center;
+    justify-content: space-between;
+    align-self: center;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 .item {
     aspect-ratio: 1;
+    display: inline-block;
     min-width: 10%;
-    background: url('images/potion.png');
+    max-width: fit-content;
     background-color: #393939;
     color: whitesmoke;
     border-radius: 10px;
-}
-
-.item:hover {
-    box-shadow: 0 8px 16px 0 rgba(92, 92, 92, 0.2);
-    background-color: #494949;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    font-size: xx-large;
 }
 
 .item-container {
-    display:inline-flex;
+    display:flex;
     flex-wrap: wrap;
     flex-direction: row;
     transition: 0.3s;
@@ -43,32 +61,28 @@ h1 {
     justify-self: center;
     align-self: center;
     background: url('images/parchment.jpg');
-    background-size:auto;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 20px;
+    background-size:cover;
     justify-content: left;
-    max-width:100%;
 }
 
-.potion {
-    background: url('images/potion.png');
+.item:hover {
+    box-shadow: 0 8px 16px 0 rgba(92, 92, 92, 0.2);
+    background-color: #494949;
 }
-  
-.inventory {
-    position: relative;
-    text-align: center;
-    color: white;
-    height: 600px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    border-radius: 15px;
-    background: url('images/leather.jpg');
-    background-size: cover;
+
+.modal-container {
     justify-self: center;
     align-self: center;
-    background-size: contain;
-    display: block;
+    width: 50%;
+}
+
+.modal-style {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    background: url('images/parchment.jpg');
+    background-size:auto;
 }
 
 .login {
@@ -93,13 +107,25 @@ h1 {
 }
 
 .title {
-    padding: 5px;
-    color: whitesmoke;
+    padding: 10px;
     text-shadow: 2px 2px #393939;
+    font-size:xx-large;
+    font-family: BerryRotunda;
+    color: whitesmoke;
 }
 
 .centered {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.attribution {
+    color: white;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: BerryRotunda;
+    src: url('images/BerryRotunda.ttf');
 }

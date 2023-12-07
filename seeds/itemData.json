@@ -1,0 +1,16 @@
+[
+    {
+        "item_name" : "Dagger",
+        "item_description": "+3 ATK",
+        "inventory_id": 1
+    },
+    {
+        "item_name" : "Red Potion",
+        "item_description": "Recover 20% HP",
+        "inventory_id": 2
+    },
+    {
+        "item_name" : "Mana Potion",
+        "item_description": "Recover 20% Mana"
+    }
+]
