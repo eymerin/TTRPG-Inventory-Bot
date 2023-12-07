@@ -1,15 +1,15 @@
 const { StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, SlashCommandBuilder } = require('discord.js');
-const { Item, Player } = require('../../../models/index'); // Import Item model
+const { Item, Player } = require('../../../models/index');
 
 module.exports = {
   // Define the command data using SlashCommandBuilder
     data: new SlashCommandBuilder()
-      .setName('senditem') // command name to createitem
-      .setDescription('Select an Item to send'), // command description
+      .setName('senditem')
+      .setDescription('Select an Item to send'),
 
     async execute(interaction) {
         try {
-            // Fetch item data from the database
+            
             const items = await Item.findAll();
             const players = await Player.findAll();
       
@@ -54,7 +54,6 @@ module.exports = {
             );
         } catch (error) {
             console.error('Error executing command:', error);
-            // Handle the error accordingly, e.g., sending an error message or logging it.
         }
     }
 };
