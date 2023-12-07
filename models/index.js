@@ -12,13 +12,13 @@ Inventory.belongsTo(Player, {
 });
 
 
-Player.hasMany(Item, {
-    foreignKey: 'player_id',
+Inventory.hasMany(Item, {
+    foreignKey: 'inventory_id',
   onDelete: 'CASCADE',
 });
 
-Item.belongsTo(Player, {
-  foreignKey: 'player_id',
+Item.belongsTo(Inventory, {
+  foreignKey: 'inventory_id',
 });
 
 module.exports = { Player, Inventory, Item };
