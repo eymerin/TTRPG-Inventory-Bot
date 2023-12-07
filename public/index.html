@@ -5,42 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Inventory</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+    <style type="text/css">
+        @font-face {
+            font-family: "My Custom Font";
+            src: url(http://www.example.org/mycustomfont.ttf) format("truetype");
+        }
+        p.customfont { 
+            font-family: "My Custom Font", Verdana, Tahoma;
+        }
+    </style>
 </head>
 
 <body>
     <div id="inventory" class="inventory">
         <header>
-            <h1 class="title">Player Inventory</h1>
+            <h1 class="title p-4 mb-0">Player Inventory</h1>
         </header>
-        <main class="item-container">
-            <button class="item" data-bs-toggle="modal" data-bs-target="#modal">Sword</button>
-            <button class="item" data-bs-toggle="modal" data-bs-target="#modal">Potion</button>
-            <button class="item" data-bs-toggle="modal" data-bs-target="#modal">Amulet</button>
-            <button class="item" data-bs-toggle="modal" data-bs-target="#modal">Sword</button>
-            <button class="item">Potion</button>
-            <button class="item">Amulet</button>
-            <button class="item">Sword</button>
-            <button class="item">Potion</button>
-            <button class="item">Amulet</button>
-            <button class="item">Sword</button>
-            <button class="item">Potion</button>
-            <button class="item">Amulet</button>
+        <main class="item-container m-4 p-4 mt-0">
+            <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Sword</button>
+            <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Shield</button>
+            <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Arrows</button>
+            <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Healing Potion</button>
+            <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Leather Boots</button>
+            <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Circlet of Sight</button>
+            <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Drinking Horn</button>
         </main>
         
     </div>
 
-    <div class="modal fade" id="reg-modal" aria-hidden="true">
-        <h2 class="title">item_name</h2>
-        <p class="item-details">item_description</p>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="item-details" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-style">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Item Name</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-lg">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    
+    <footer>
+        <a href="https://www.fonts4free.net/berry-rotunda-font.html" class="attribution">Font by Typo-Graf on fonts4free</a>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 
