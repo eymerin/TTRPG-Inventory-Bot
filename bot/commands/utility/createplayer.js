@@ -28,7 +28,7 @@ module.exports = {
 
         const playerPassInput = new TextInputBuilder()
 			.setCustomId('playerPass')
-			.setLabel("Set a password for this players login.")
+			.setLabel("Create a player password (Min 8 characters).")
             .setRequired(true)
 			.setStyle(TextInputStyle.Short);
 

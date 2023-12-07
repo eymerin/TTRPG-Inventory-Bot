@@ -168,10 +168,21 @@ client.on(Events.InteractionCreate, async interaction => {
   const playerPass = interaction.fields.getTextInputValue('playerPass');
 	console.log({ playerName, playerUser, playerPass });
 
-  //This is where we will want to place logic to use information from the modal for the database.
+  try {
+    // Insert player into the database using Sequelize
+    const newPlayer = await Player.create({
+      name: playerName,
+      user: playerUser,
+      password: playerPass,
+    });
 
-	await interaction.reply({ content: `Your palyer details were collected successfully, and ${playerName} has been added!` });
-	}
+    console.log('Player added to database successfully:', newPlayer.toJSON());
+    await interaction.reply({ content: `Your player details were collected successfully, and ${playerName} has been added! Additionally, an inventory has been created for them!` });
+  } catch (error) {
+    console.error('Error adding player to database:', error);
+    await interaction.reply({ content: 'Failed to add the player to the database.' });
+  }
+}
 });
 
 // Log in to Discord with the bot's token

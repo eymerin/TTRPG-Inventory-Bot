@@ -24,9 +24,6 @@ Player.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
     },
     password: {
       type: DataTypes.STRING,
@@ -48,7 +45,7 @@ Player.init(
       },
       afterCreate: async (createdPlayer) => {
         try {
-          // Create an associated inventory for the newly created player
+          const Inventory = require('./inventory');
           await Inventory.create({
             inventory_name: `${createdPlayer.name}'s Inventory`,
             player_id: createdPlayer.player_id,
