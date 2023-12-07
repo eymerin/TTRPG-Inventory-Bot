@@ -85,11 +85,11 @@ module.exports = {
 
               if (playerInventory) {
                 // If the player has an inventory, add the selected item to the player's inventory
-                await playerInventory.addItem(selectedItem); // Assuming you have a method like 'addItem' in Inventory model
+                await playerInventory.addItem(selectedItem);
                 console.log(`Item '${selectedItem.item_name}' added to player '${selectedPlayer.name}'s inventory.`);
               } else {
                 console.log(`Player '${selectedPlayer.name}' does not have an inventory.`);
-                // Handle the case where the player does not have an inventory
+                
               }
               // Handle the selected player or store the data as needed in the database
             }

@@ -90,22 +90,20 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 
-
-
 //Event Listener for createplayer command
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isModalSubmit()) return;
   if (interaction.customId === 'createPlayer') {
 	const playerName = interaction.fields.getTextInputValue('playerNameInput');
-	const playerUser = interaction.fields.getTextInputValue('playerUser');
+	const playerUsername = interaction.fields.getTextInputValue('playerUsername');
   const playerPass = interaction.fields.getTextInputValue('playerPass');
-	console.log({ playerName, playerUser, playerPass });
+	console.log({ playerName, playerUsername, playerPass });
 
   try {
     // Insert player into the database using Sequelize
     const newPlayer = await Player.create({
       name: playerName,
-      user: playerUser,
+      username: playerUsername,
       password: playerPass,
     });
 
