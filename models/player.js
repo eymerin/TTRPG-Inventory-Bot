@@ -46,6 +46,17 @@ Player.init(
         updatedPlayerData.password = await bcrypt.hash(updatedPlayerData.password, 10);
         return updatedPlayerData;
       },
+      afterCreate: async (createdPlayer) => {
+        try {
+          // Create an associated inventory for the newly created player
+          await Inventory.create({
+            inventory_name: `${createdPlayer.name}'s Inventory`,
+            player_id: createdPlayer.player_id,
+          });
+        } catch (error) {
+          console.error('Error creating inventory for player:', error);
+        }
+      },
     },
     sequelize,
     timestamps: false,
