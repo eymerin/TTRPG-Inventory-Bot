@@ -3,27 +3,27 @@ const { Player } = require('../models');
 playerdata = [
     {
       name: "Yttani",
-      user: "user1",
+      username: "user1",
       password: "password12345"
     },
     {
       name: "Eymerin",
-      user: "user2",
+      username: "user2",
       password: "password12345"
     },
     {
       name: "player3",
-      user: "user3",
+      username: "user3",
       password: "password12345"
     },
     {
       name: "player4",
-      user: "user4",
+      username: "user4",
       password: "password12345"
     },
     {
       name: "player5",
-      user: "user5",
+      username: "user5",
       password: "password12345"
     }
     

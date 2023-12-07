@@ -1,0 +1,16 @@
+<section id="inventory" class="inventory">
+    <header>
+        <h1 class="title">Player Inventory</h1>
+    </header>
+
+    {{#if loggedIn}}
+    <section class="item-container">
+        {{#each inventory.item as |item|}}
+        {{>item-details}}
+        {{/each}}
+    </section>
+</section>
+<!-- Otherwise, provide a link to login -->
+{{else}}
+<a href="/login">Please Login</a>
+{{/if}}

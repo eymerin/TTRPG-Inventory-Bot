@@ -4,9 +4,10 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
+    console.log(req.session.player_id);
     const loggedIn = req.session.loggedIn || false;
 
-    const inventoryData = await Player.findAll({
+    const inventoryData = await Player.findByPk(req.session.player_id, {
       include: [
         {
           model: Inventory,
@@ -15,15 +16,30 @@ router.get('/', async (req, res) => {
       ],
     });
 
-    const inventories = inventoryData.map((inventory) =>
-      inventory.get({ plain: true })
-    );
+    if (!inventoryData) {
+      // Handle the case where the player with the specified ID is not found
+      res.status(404).send('Player not found');
+      return;
+    }
 
-    res.render('main', {
-      inventories,
-      loggedIn,
+    const inventories = inventoryData.get({ plain: true });
+    // need to save player_id from session to find correct inventory
+    const playerSess = req.session.player_id;
+    
+    req.session.save(() => {
+      // We set up a session variable to count the number of times we visit the homepage
+      req.session.player_id;
+
+      res.render('inventory', {
+        inventories,
+        loggedIn:req.session.loggedIn,
+        // We send over the current 'countVisit' session variable to be rendered
+        playerSess: req.session.player_id,
+      });
+      console.log(inventories);
+      console.log(playerSess);
     });
-    console.log(inventoryData);
+    
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

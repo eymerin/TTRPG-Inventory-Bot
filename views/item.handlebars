@@ -1,0 +1,5 @@
+{{#if loggedIn}}
+<button type="button" id={{item.item_id}} class="item m-1" data-toggle="modal" data-target="#modal">{{item.item_name}}</button>
+{{else}}
+<a href="/login">Please Login</a>
+{{/if}}
