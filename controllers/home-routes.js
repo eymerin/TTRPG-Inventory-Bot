@@ -1,32 +1,34 @@
 const router = require('express').Router();
-const { Inventory, Item } = require('../models');
-
+const { Player, Inventory, Item } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
-    try {
-      const inventoryData = await Inventory.findAll({
-        include: [
-          {
-            model: Inventory,
-            attributes: ['item_name', 'description'],
-          },
-        ],
-      });
-  
-      const inventories = inventoryData.map((inventory) =>
-        inventory.get({ plain: true })
-      );
-  
-      res.render('main', {
-        inventories,
-        loggedIn: req.session.loggedIn,
-      });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
-  });
+  try {
+    const loggedIn = req.session.loggedIn || false;
+
+    const inventoryData = await Player.findAll({
+      include: [
+        {
+          model: Inventory,
+          attributes: ['inventory_name'],
+        },
+      ],
+    });
+
+    const inventories = inventoryData.map((inventory) =>
+      inventory.get({ plain: true })
+    );
+
+    res.render('main', {
+      inventories,
+      loggedIn,
+    });
+    console.log(inventoryData);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 router.get('/inventory/:id', withAuth, async (req, res) => {
     try {
@@ -55,9 +57,7 @@ router.get('/inventory/:id', withAuth, async (req, res) => {
 router.get('/item/:id', withAuth, async (req, res) => {
     try {
         const itemData = await Item.findByPk(req.params.id);
-
         const item = itemData.get({ plain: true });
-
         res.render('item', { item, loggedIn: req.session.loggedIn });
     } catch (err) {
         console.log(err);
