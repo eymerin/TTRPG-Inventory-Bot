@@ -33,6 +33,7 @@ Installation needed
 - Must be interactive (i.e accept and respond to user input)
 - Must meet good-quality coding standards (file structure, best practices, etc)
 - Must have professional README ( unique name, description, link to the deployed app)
+- MVC Paradigm
 
 ## Credits
 ### Collaborators for this project were:
@@ -49,6 +50,7 @@ Brendalee Alcala
 - MySQL and Sequelize ORM
 - API Keys
 - GET & POST
+- Bootstrap
 
 ## Screenshot
 
