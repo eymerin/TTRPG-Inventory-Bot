@@ -24,7 +24,7 @@
             <h1 class="title p-4 mb-0">Player Inventory</h1>
         </header>
         <main class="item-container m-4 p-4 mt-0">
-            <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Sword</button>
+            <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Shortsword</button>
             <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Shield</button>
             <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Arrows</button>
             <button type="button" class="item m-1" data-toggle="modal" data-target="#modal">Healing Potion</button>
@@ -40,13 +40,19 @@
         <div class="modal-dialog" role="document">
             <div class="modal-style">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Item Name</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Shortsword</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body text-lg" id={{item_id}}>
-                    <p>{{item_description}}</p>
+                    <p>
+                        A short bladed sword meant for wielding one handed, often with another weapon or shield.<br>
+                        Damage: 1d6<br>
+                        Damage Type: Piercing<br>
+                        Properties: Finesse, Light<br>
+                        Weight: 2
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

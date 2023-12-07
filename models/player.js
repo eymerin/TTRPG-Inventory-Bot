@@ -20,13 +20,10 @@ Player.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user: {
+    username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
     },
     password: {
       type: DataTypes.STRING,
@@ -45,6 +42,17 @@ Player.init(
       beforeUpdate: async (updatedPlayerData) => {
         updatedPlayerData.password = await bcrypt.hash(updatedPlayerData.password, 10);
         return updatedPlayerData;
+      },
+      afterCreate: async (createdPlayer) => {
+        try {
+          const Inventory = require('./inventory');
+          await Inventory.create({
+            inventory_name: `${createdPlayer.name}'s Inventory`,
+            player_id: createdPlayer.player_id,
+          });
+        } catch (error) {
+          console.error('Error creating inventory for player:', error);
+        }
       },
     },
     sequelize,
