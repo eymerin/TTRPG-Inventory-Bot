@@ -1,5 +1,5 @@
 const { StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder, SlashCommandBuilder, ComponentType } = require('discord.js');
-const { Item, Player } = require('../../../models/index');
+const { Item, Player, Inventory } = require('../../../models/index');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -77,6 +77,20 @@ module.exports = {
               // Log collected info
               console.log(`Selected item: ${selectedItem.item_name}`);
               console.log(`Sent to player: ${selectedPlayer.name}`);
+
+              // Check if the selected player already has an inventory
+              const playerInventory = await Inventory.findOne({
+                where: { player_id: selectedPlayer.player_id },
+              });
+
+              if (playerInventory) {
+                // If the player has an inventory, add the selected item to the player's inventory
+                await playerInventory.addItem(selectedItem); // Assuming you have a method like 'addItem' in Inventory model
+                console.log(`Item '${selectedItem.item_name}' added to player '${selectedPlayer.name}'s inventory.`);
+              } else {
+                console.log(`Player '${selectedPlayer.name}' does not have an inventory.`);
+                // Handle the case where the player does not have an inventory
+              }
               // Handle the selected player or store the data as needed in the database
             }
           });
