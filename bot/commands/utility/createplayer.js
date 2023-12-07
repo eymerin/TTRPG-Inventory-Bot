@@ -4,8 +4,8 @@ const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = req
 module.exports = {
     // Define the command data using SlashCommandBuilder
     data: new SlashCommandBuilder()
-      .setName('createplayer') // command name to createitem
-      .setDescription('Creates A player and sets login info for the player'), // command description
+      .setName('createplayer') 
+      .setDescription('Creates A player and sets login info for the player'),
   
     // Execute function that runs when the command is invoked
     async execute(interaction) {
@@ -16,9 +16,7 @@ module.exports = {
 		// Create the text input components
 		const playerNameInput = new TextInputBuilder()
 			.setCustomId('playerNameInput')
-		    // The label is the prompt the user sees for this input
 			.setLabel("What's the name of the player?")
-		    // Short means only a single line of text
             .setRequired(true)
 			.setStyle(TextInputStyle.Short);
             
@@ -26,14 +24,12 @@ module.exports = {
 			.setCustomId('playerUser')
 			.setLabel("Set a login username for this player.")
             .setRequired(true)
-		    // Paragraph means multiple lines of text.
 			.setStyle(TextInputStyle.Short);
 
         const playerPassInput = new TextInputBuilder()
 			.setCustomId('playerPass')
-			.setLabel("Set a password for this players login.")
+			.setLabel("Create a player password (Min 8 characters).")
             .setRequired(true)
-		    // Paragraph means multiple lines of text.
 			.setStyle(TextInputStyle.Short);
 
 		// An action row only holds one text input,
@@ -46,7 +42,6 @@ module.exports = {
 		modal.addComponents(firstActionRow, secondActionRow, thirdActionRow);
 
 		// Show the modal to the user
-        // await interaction.reply('Creating an item...');
 		await interaction.showModal(modal);
 	},
 };
