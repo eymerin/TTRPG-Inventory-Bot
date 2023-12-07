@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
         inventory.get({ plain: true })
       );
   
-      res.render('homepage', {
+      res.render('main', {
         inventories,
         loggedIn: req.session.loggedIn,
       });
