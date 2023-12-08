@@ -38,7 +38,7 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-router.get('/inventory/:id', withAuth, async (req, res) => {
+router.get('/inventory', withAuth, async (req, res) => {
     try {
         const inventoryData = await Inventory.findByPk(req.params.id, {
             include: [
