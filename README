@@ -13,7 +13,6 @@ A discord bot for TTRPG players that like to play TTRPG games online, this is an
 - [License](#license)
 
 ## Installation
-
 No installation needed
 
 
@@ -33,7 +32,6 @@ No installation needed
 - Must be interactive (i.e accept and respond to user input)
 - Must meet good-quality coding standards (file structure, best practices, etc)
 - Must have professional README ( unique name, description, link to the deployed app)
-- MVC Paradigm
 
 ## Credits
 ### Collaborators for this project were:
@@ -47,14 +45,17 @@ Brendalee Alcala
 - Excalidraw
 - Handlebars
 - Node.js
-- MySQL and Sequelize ORM
+- MySql & Sequelized ORM
 - API Keys
 - GET & POST
+- Authentication
 - Bootstrap
+- Heroku
+
 
 ## Screenshot
+![TTRPG Inventory Bot](./public/images/botscreenshot.jpg)
 
-
-## Heroku deployed link: 
+## Heroku deployed link: [https://bot-of-holding-701c5a61071f.herokuapp.com/]
 
 ## Github Repo link : [https://github.com/eymerin/TTRPG-Inventory-Bot]
